@@ -6,21 +6,31 @@
 #include <iostream>
 #include <memory>
 #include <utility>
+#include <assert.h>
 
 namespace Textures{
-	enum class ID { Player, Missile, Ennemi };
+	enum ID{
+		Eagle,
+		Raptor,
+	};
 }
 
-class TextureHolder{
+template <typename Resource, typename Identifier>
+class ResourceHolder{
 	public:
-		TextureHolder();
-		void load(Textures::ID id, const std::string& filename);
-		void loadAll();
-		const sf::Texture& get(Textures::ID id) const;
+		ResourceHolder();
+		void load(Identifier id, const std::string& filename);
+		template <typename Parameter>
+		void load(Identifier id, const std::string& filename, 
+			const Parameter& secondParam);
+		const Resource& get(Identifier id) const;
 
 	private:
-		std::map<Textures::ID,
-			std::unique_ptr<sf::Texture>> mTextureMap;
+		std::map<Identifier, std::unique_ptr<Resource>> mTextureMap;
 };
+
+typedef ResourceHolder<sf::Texture, Textures::ID> TextureHolder;
+
+#include "textureHolder.tpp"
 
 #endif //TEXTURE_HOLDER_H

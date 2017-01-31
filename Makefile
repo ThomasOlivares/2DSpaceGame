@@ -3,9 +3,12 @@ FLAG=-lsfml-graphics \
 	-lsfml-system 
 
 CLASSES=game.o \
-		entite.o \
+		entity.o \
 		player.o \
-		textureHolder.o
+		textureHolder.h \
+		sceneNode.o \
+		spriteNode.o \
+		world.o
 
 LDFLAGS=-g
 
@@ -16,8 +19,8 @@ all : main
 main : $(CLASSES)
 	g++ $(LDFLAGS) $(CLASSES) -o SpaceShooter $(RDFLAGS) $(FLAG)
 
-entite.o : entite.cpp
-	g++ $(LDFLAGS) -c entite.cpp $(RDFLAGS)
+entity.o : entity.cpp
+	g++ $(LDFLAGS) -c entity.cpp $(RDFLAGS)
 
 game.o : game.cpp
 	g++ $(LDFLAGS) -c game.cpp $(RDFLAGS)
@@ -25,8 +28,15 @@ game.o : game.cpp
 player.o : player.cpp
 	g++ $(LDFLAGS) -c player.cpp $(RDFLAGS)
 
-textureHolder.o : textureHolder.cpp
-	g++ $(LDFLAGS) -c textureHolder.cpp $(RDFLAGS)
+sceneNode.o : sceneNode.cpp
+	g++ $(LDFLAGS) -c sceneNode.cpp $(RDFLAGS)
+
+spriteNode.o : spriteNode.cpp
+	g++ $(LDFLAGS) -c spriteNode.cpp $(RDFLAGS)
+
+world.o : world.cpp
+	g++ $(LDFLAGS) -c world.cpp $(RDFLAGS)
+
 
 clean :
 	rm *.o

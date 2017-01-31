@@ -1,14 +1,23 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "entite.h"
+#include "entity.h"
+#include "textureHolder.h"
 
-class Player: public Entite{
+class Aircraft : public Entity{
 	public:
-		Player(int posX, int posY);
+		enum Type{Eagle,Raptor,};
 
-	protected:
-
+	public:
+		Aircraft(Type type, const TextureHolder& textures);
+		void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
+		explicit Aircraft(Type type);
+		
+	private:
+		Type mType;
+		sf::Sprite mSprite;
 };
+
+Textures::ID toTextureID(Aircraft::Type type);
 
 #endif //PLAYER_H

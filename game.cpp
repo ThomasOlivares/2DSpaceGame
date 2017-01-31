@@ -2,13 +2,13 @@
 
 using namespace std;
 
-Game::Game(): mWindow(sf::VideoMode(640, 480), "Space shooter"), rocket(){
+Game::Game(): mWindow(sf::VideoMode(640, 480), "Space shooter"), rocket(), 
+		player(Aircraft::Eagle), textures(){
 	TimePerFrame = sf::milliseconds(TIME_PER_FRAME);
 
-	TextureHolder textures;
-	textures.loadAll();
+	textures.load(Textures::ID::Eagle, "Textures/player.png");
 
-	rocket.setTexture(textures.get(Textures::ID::Player));
+	rocket.setTexture(textures.get(Textures::ID::Eagle));
 	rocket.setPosition(100.f, 100.f);
 }
 
@@ -30,11 +30,10 @@ void Game::processEvents(){
 }
 
 void Game::update(sf::Time deltaTime){
-
 }
 
 void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed){
-
+	
 }
 
 void Game::render(){
