@@ -4,14 +4,19 @@
 #include "entity.h"
 #include "textureHolder.h"
 
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/Graphics/RenderStates.hpp>
+
 class Aircraft : public Entity{
 	public:
-		enum Type{Eagle,Raptor,};
+		enum Type{
+			Eagle,
+			Raptor
+		};
 
 	public:
 		Aircraft(Type type, const TextureHolder& textures);
-		void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
-		explicit Aircraft(Type type);
+		virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
 		
 	private:
 		Type mType;

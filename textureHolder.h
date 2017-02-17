@@ -12,6 +12,7 @@ namespace Textures{
 	enum ID{
 		Eagle,
 		Raptor,
+		Space
 	};
 }
 
@@ -23,10 +24,10 @@ class ResourceHolder{
 		template <typename Parameter>
 		void load(Identifier id, const std::string& filename, 
 			const Parameter& secondParam);
-		const Resource& get(Identifier id) const;
+		Resource& get(Identifier id) const;
 
 	private:
-		std::map<Identifier, std::unique_ptr<Resource>> mTextureMap;
+		std::map<Identifier, std::unique_ptr<Resource>> mResourceMap;
 };
 
 typedef ResourceHolder<sf::Texture, Textures::ID> TextureHolder;

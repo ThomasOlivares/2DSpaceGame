@@ -1,8 +1,9 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "spriteNode.hpp"
 #include "sceneNode.hpp"
 #include "textureHolder.h"
-#include "player.h"
+#include "player.hpp"
 
 class World : private sf::NonCopyable{
 	public:

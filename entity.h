@@ -2,8 +2,9 @@
 #define ENTITY_H
 
 #include <SFML/Graphics.hpp>
+#include "sceneNode.hpp"
 
-class Entity : public sf::Transformable{
+class Entity : public SceneNode{
 	public:
 		Entity();
 		void setVelocity(sf::Vector2f velocity);
