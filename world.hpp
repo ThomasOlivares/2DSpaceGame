@@ -10,6 +10,7 @@ class World : private sf::NonCopyable{
 		explicit World(sf::RenderWindow& window);
 		void update(sf::Time dt);
 		void draw();
+		void setPlayerSpeed(sf::Vector2f movement);
 
 	private:
 		void loadTextures();

@@ -20,6 +20,10 @@ World::World(sf::RenderWindow& window)
 	mWorldView.setCenter(mSpawnPosition);
 }
 
+void World::setPlayerSpeed(sf::Vector2f movement){
+	mPlayerAircraft->setVelocity(mPlayerAircraft->getVelocity() + movement);
+}
+
 void World::update(sf::Time dt)
 {
 	// Scroll the world
@@ -28,7 +32,7 @@ void World::update(sf::Time dt)
 	// Move the player sidewards (plane scouts follow the main aircraft)
 	sf::Vector2f position = mPlayerAircraft->getPosition();
 	sf::Vector2f velocity = mPlayerAircraft->getVelocity();
-
+/*
 	// If player touches borders, flip its X velocity
 	if (position.x <= mWorldBounds.left + 150.f
 	 || position.x >= mWorldBounds.left + mWorldBounds.width - 150.f)
@@ -36,9 +40,14 @@ void World::update(sf::Time dt)
 		velocity.x = -velocity.x;
 		mPlayerAircraft->setVelocity(velocity);
 	}
-
+*/
 	// Apply movements
 	mSceneGraph.update(dt);
+
+	// We reboot the velocity of the aircraft
+	mPlayerAircraft->setVelocity(0.f, mScrollSpeed);
+
+	//mPlayerAircraft->move(mPlayerAircraft->getVelocity() * dt.asSeconds());
 }
 
 void World::draw(){

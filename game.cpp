@@ -7,6 +7,7 @@
 using namespace std;
 
 const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
+const float PlayerSpeed = 150.f;
 
 Game::Game()
 : mWindow(sf::VideoMode(640, 480), "World", sf::Style::Close)
@@ -69,6 +70,18 @@ void Game::processEvents()
 void Game::update(sf::Time elapsedTime)
 {
 	mWorld.update(elapsedTime);
+
+	sf::Vector2f movement(0.f, 0.f);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+		movement.y -= PlayerSpeed;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		movement.y += PlayerSpeed;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+		movement.x -= PlayerSpeed;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		movement.x += PlayerSpeed;
+
+	mWorld.setPlayerSpeed(movement);
 }
 
 void Game::render()
