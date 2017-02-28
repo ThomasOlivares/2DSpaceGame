@@ -1,28 +1,46 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef BOOK_PLAYER_HPP
+#define BOOK_PLAYER_HPP
 
-#include "entity.h"
-#include "textureHolder.h"
+#include "category.hpp"
+#include "command.hpp"
+#include "commandQueue.hpp"
+#include "aircraft.hpp"
 
-#include <SFML/Graphics/RenderTarget.hpp>
-#include <SFML/Graphics/RenderStates.hpp>
+#include <SFML/Window/Event.hpp>
 
-class Aircraft : public Entity{
+#include <map>
+
+class Player
+{
 	public:
-		enum Type{
-			Eagle,
-			Raptor
+		enum Action
+		{
+			MoveLeft,
+			MoveRight,
+			MoveUp,
+			MoveDown,
+			ActionCount
 		};
 
+
 	public:
-		Aircraft(Type type, const TextureHolder& textures);
-		virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
-		
+								Player();
+
+		void					handleEvent(const sf::Event& event, CommandQueue& commands);
+		void					handleRealtimeInput(CommandQueue& commands);
+
+		void					assignKey(Action action, sf::Keyboard::Key key);
+		sf::Keyboard::Key		getAssignedKey(Action action) const;
+
+
 	private:
-		Type mType;
-		sf::Sprite mSprite;
+		void					initializeActions();
+		static bool				isRealtimeAction(Action action);
+
+
+	private:
+		std::map<sf::Keyboard::Key, Action>		mKeyBinding;
+		std::map<Action, Command>				mActionBinding;
 };
 
-Textures::ID toTextureID(Aircraft::Type type);
-
-#endif //PLAYER_H
+#endif // BOOK_PLAYER_HPP

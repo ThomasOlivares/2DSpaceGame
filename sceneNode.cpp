@@ -52,6 +52,15 @@ void SceneNode::updateChildren(sf::Time dt){
 	}
 }
 
+void SceneNode::onCommand(const Command& command, sf::Time dt){
+	if (command.category & getCategory()){
+		command.action(*this, dt);
+	}
+	for (auto i = mChildren.begin(); i != mChildren.end(); i++){
+		(*i)->onCommand(command, dt);
+	}
+}
+
 sf::Transform SceneNode::getWorldTransform() const{
 	sf::Transform transform = sf::Transform::Identity;
 
@@ -69,5 +78,7 @@ int SceneNode::getNumberChildren() const{
 	return mChildren.size();
 }
 
-
+unsigned int SceneNode::getCategory() const{
+	return Category::Scene;
+}
 

@@ -2,6 +2,7 @@
 #define BOOK_GAME_HPP
 
 #include "world.hpp"
+#include "player.hpp"
 
 #include <SFML/System/Time.hpp>
 #include <SFML/Window/Keyboard.hpp>
@@ -31,6 +32,7 @@ class Game : private sf::NonCopyable
 
 		sf::RenderWindow		mWindow;
 		World					mWorld;
+		Player 					mPlayer;
 
 	  	sf::Font				mFont;
 		sf::Text				mStatisticsText;

@@ -3,13 +3,15 @@
 #include "spriteNode.hpp"
 #include "sceneNode.hpp"
 #include "textureHolder.h"
-#include "player.hpp"
+#include "aircraft.hpp"
+#include "commandQueue.hpp"
 
 class World : private sf::NonCopyable{
 	public:
 		explicit World(sf::RenderWindow& window);
 		void update(sf::Time dt);
 		void draw();
+		CommandQueue& getCommandQueue();
 		void setPlayerSpeed(sf::Vector2f movement);
 
 	private:
@@ -24,13 +26,14 @@ class World : private sf::NonCopyable{
 		};
 
 	private:
-		sf::RenderWindow& mWindow;
-		sf::View mWorldView;
-		TextureHolder mTextures;
-		SceneNode mSceneGraph;
-		std::array<SceneNode*, LayerCount> mSceneLayers;
-		sf::FloatRect mWorldBounds;
-		sf::Vector2f mSpawnPosition;
-		float mScrollSpeed;
-		Aircraft* mPlayerAircraft;
+		sf::RenderWindow& 					mWindow;
+		sf::View 							mWorldView;
+		TextureHolder 						mTextures;
+		SceneNode 							mSceneGraph;
+		std::array<SceneNode*, LayerCount> 	mSceneLayers;
+		CommandQueue 						mCommandQueue;
+		sf::FloatRect 						mWorldBounds;
+		sf::Vector2f 						mSpawnPosition;
+		float 								mScrollSpeed;
+		Aircraft* 							mPlayerAircraft;		
 };

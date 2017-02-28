@@ -2,22 +2,35 @@ FLAG=-lsfml-graphics \
 	-lsfml-window \
 	-lsfml-system 
 
-CLASSES=game.o \
+CLASSES=aircraft.o \
+		category.hpp \
+		command.o \
+		commandQueue.o \
+		game.o \
 		entity.o \
 		player.o \
-		textureHolder.h \
 		sceneNode.o \
 		spriteNode.o \
+		textureHolder.h \
 		world.o
 
 LDFLAGS=-g
 
-RDFLAGS=-std=c++11
+RDFLAGS=-std=c++11 -Wall -Werror
 
 all : main
 
 main : $(CLASSES)
 	g++ $(LDFLAGS) $(CLASSES) -o SpaceShooter $(RDFLAGS) $(FLAG)
+
+aircraft.o : aircraft.cpp
+	g++ $(LDFLAGS) -c aircraft.cpp $(RDFLAGS)
+
+command.o : command.cpp
+	g++ $(LDFLAGS) -c command.cpp $(RDFLAGS)
+
+commandQueue.o : commandQueue.cpp
+	g++ $(LDFLAGS) -c commandQueue.cpp $(RDFLAGS)
 
 entity.o : entity.cpp
 	g++ $(LDFLAGS) -c entity.cpp $(RDFLAGS)

@@ -1,6 +1,8 @@
 #ifndef SCENE_NODE
 #define SCENE_NODE
 
+#include "command.hpp"
+
 #include <SFML/Graphics.hpp>
 #include <assert.h>
 #include <iostream>
@@ -24,9 +26,11 @@ class SceneNode : public sf::Transformable, public sf::Drawable,
 		void attachChild(Ptr child);
 		Ptr detachChild(const SceneNode& node);
 		void update(sf::Time dt);
+		void onCommand(const Command& command, sf::Time dt);
 		sf::Transform getWorldTransform() const;
 		sf::Vector2f getWorldPosition() const;
 		int getNumberChildren() const;
+		virtual unsigned int getCategory() const;
 
 
 	private:
