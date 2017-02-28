@@ -53,6 +53,7 @@ void Game::processEvents()
 		mPlayer.handleEvent(event, commands);
 		if (event.type == sf::Event::Closed){
 			mWindow.close();
+			exit(EXIT_SUCCESS);
 		}
 	}
 	mPlayer.handleRealtimeInput(commands);
