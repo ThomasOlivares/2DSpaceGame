@@ -2,7 +2,7 @@
 #define PLAYER_H
 
 #include "entity.h"
-#include "textureHolder.h"
+#include "resourceHolder.hpp"
 
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/RenderStates.hpp>

@@ -2,7 +2,7 @@
 #include <iostream>
 #include "spriteNode.hpp"
 #include "sceneNode.hpp"
-#include "textureHolder.h"
+#include "resourceHolder.hpp"
 #include "aircraft.hpp"
 #include "commandQueue.hpp"
 

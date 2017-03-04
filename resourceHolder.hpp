@@ -1,20 +1,14 @@
 #ifndef TEXTURE_HOLDER_H
 #define TEXTURE_HOLDER_H
 
+#include "resourceIdentifiers.hpp"
+
 #include <SFML/Graphics.hpp>
 #include <map>
 #include <iostream>
 #include <memory>
 #include <utility>
 #include <assert.h>
-
-namespace Textures{
-	enum ID{
-		Eagle,
-		Raptor,
-		Space
-	};
-}
 
 template <typename Resource, typename Identifier>
 class ResourceHolder{
@@ -30,8 +24,6 @@ class ResourceHolder{
 		std::map<Identifier, std::unique_ptr<Resource>> mResourceMap;
 };
 
-typedef ResourceHolder<sf::Texture, Textures::ID> TextureHolder;
-
-#include "textureHolder.tpp"
+#include "resourceHolder.tpp"
 
 #endif //TEXTURE_HOLDER_H
