@@ -4,22 +4,27 @@ FLAG=-lsfml-graphics \
 
 CLASSES=aircraft.o \
 		application.o \
-		category.hpp \
+		button.o \
+		$(HEADERS)category.hpp \
 		command.o \
 		commandQueue.o \
+		component.o \
+		container.o \
 		entity.o \
 		gameState.o \
+		label.o \
 		loadingState.o \
 		main.o \
 		menuState.o \
 		parallelTask.o \
 		pauseState.o \
 		player.o \
-		resourceHolder.hpp \
+		$(HEADERS)resourceHolder.hpp \
 		sceneNode.o \
+		settingState.o \
 		spriteNode.o \
 		state.o \
-		stateIdentifiers.hpp \
+		$(HEADERS)stateIdentifiers.hpp \
 		stateStack.o \
 		titleState.o \
 		utility.o \
@@ -29,67 +34,86 @@ LDFLAGS=-g
 
 RDFLAGS=-std=c++11 -Wall -Werror
 
+SOURCES = Sources/
+
+HEADERS = Headers/
+
 all : main
 
 main : $(CLASSES)
 	g++ $(LDFLAGS) $(CLASSES) -o SpaceShooter $(RDFLAGS) $(FLAG)
 
-main.o : main.cpp
-	g++ $(LDFLAGS) -c main.cpp $(RDFLAGS)
+main.o : $(SOURCES)main.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)main.cpp $(RDFLAGS)
 
-aircraft.o : aircraft.cpp
-	g++ $(LDFLAGS) -c aircraft.cpp $(RDFLAGS)
+aircraft.o : $(SOURCES)aircraft.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)aircraft.cpp $(RDFLAGS)
 
-application.o : application.cpp
-	g++ $(LDFLAGS) -c application.cpp $(RDFLAGS)
+application.o : $(SOURCES)application.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)application.cpp $(RDFLAGS)
 
-command.o : command.cpp
-	g++ $(LDFLAGS) -c command.cpp $(RDFLAGS)
+button.o : $(SOURCES)button.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)button.cpp $(RDFLAGS)
 
-commandQueue.o : commandQueue.cpp
-	g++ $(LDFLAGS) -c commandQueue.cpp $(RDFLAGS)
+command.o : $(SOURCES)command.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)command.cpp $(RDFLAGS)
 
-entity.o : entity.cpp
-	g++ $(LDFLAGS) -c entity.cpp $(RDFLAGS)
+commandQueue.o : $(SOURCES)commandQueue.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)commandQueue.cpp $(RDFLAGS)
 
-gameState.o : gameState.cpp
-	g++ $(LDFLAGS) -c gameState.cpp $(RDFLAGS)
+component.o : $(SOURCES)component.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)component.cpp $(RDFLAGS)
 
-loadingState.o : loadingState.cpp
-	g++ $(LDFLAGS) -c loadingState.cpp $(RDFLAGS)
+container.o : $(SOURCES)container.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)container.cpp $(RDFLAGS)
 
-menuState.o : menuState.cpp
-	g++ $(LDFLAGS) -c menuState.cpp $(RDFLAGS)
+entity.o : $(SOURCES)entity.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)entity.cpp $(RDFLAGS)
 
-parallelTask.o : parallelTask.cpp
-	g++ $(LDFLAGS) -c parallelTask.cpp $(RDFLAGS)
+gameState.o : $(SOURCES)gameState.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)gameState.cpp $(RDFLAGS)
 
-pauseState.o : pauseState.cpp
-	g++ $(LDFLAGS) -c pauseState.cpp $(RDFLAGS)
+label.o : $(SOURCES)label.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)label.cpp $(RDFLAGS)
 
-player.o : player.cpp
-	g++ $(LDFLAGS) -c player.cpp $(RDFLAGS)
+loadingState.o : $(SOURCES)loadingState.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)loadingState.cpp $(RDFLAGS)
 
-sceneNode.o : sceneNode.cpp
-	g++ $(LDFLAGS) -c sceneNode.cpp $(RDFLAGS)
+menuState.o : $(SOURCES)menuState.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)menuState.cpp $(RDFLAGS)
 
-spriteNode.o : spriteNode.cpp
-	g++ $(LDFLAGS) -c spriteNode.cpp $(RDFLAGS)
+parallelTask.o : $(SOURCES)parallelTask.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)parallelTask.cpp $(RDFLAGS)
 
-state.o :  state.cpp
-	g++ $(LDFLAGS) -c state.cpp $(RDFLAGS)
+pauseState.o : $(SOURCES)pauseState.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)pauseState.cpp $(RDFLAGS)
 
-stateStack.o :  stateStack.cpp
-	g++ $(LDFLAGS) -c stateStack.cpp $(RDFLAGS)
+player.o : $(SOURCES)player.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)player.cpp $(RDFLAGS)
 
-titleState.o : titleState.cpp
-	g++ $(LDFLAGS) -c titleState.cpp $(RDFLAGS)
+sceneNode.o : $(SOURCES)sceneNode.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)sceneNode.cpp $(RDFLAGS)
 
-utility.o : utility.cpp
-	g++ $(LDFLAGS) -c utility.cpp $(RDFLAGS)
+settingState.o : $(SOURCES)settingState.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)settingState.cpp $(RDFLAGS)
 
-world.o : world.cpp
-	g++ $(LDFLAGS) -c world.cpp $(RDFLAGS)
+spriteNode.o : $(SOURCES)spriteNode.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)spriteNode.cpp $(RDFLAGS)
+
+state.o :  $(SOURCES)state.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)state.cpp $(RDFLAGS)
+
+stateStack.o :  $(SOURCES)stateStack.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)stateStack.cpp $(RDFLAGS)
+
+titleState.o : $(SOURCES)titleState.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)titleState.cpp $(RDFLAGS)
+
+utility.o : $(SOURCES)utility.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)utility.cpp $(RDFLAGS)
+
+world.o : $(SOURCES)world.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)world.cpp $(RDFLAGS)
 
 clean :
 	rm *.o
