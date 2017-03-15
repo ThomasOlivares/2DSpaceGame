@@ -3,14 +3,20 @@
 
 #include "../Headers/stateIdentifiers.hpp"
 #include "../Headers/resourceHolder.hpp"
-#include "../Headers/player.hpp"
+#include "../Headers/resourceIdentifiers.hpp"
 #include "../Headers/utility.hpp"
 
 #include <SFML/System/Time.hpp>
 #include <SFML/Window/Event.hpp>
 #include <memory>
 
+namespace sf
+{
+	class RenderWindow;
+}
+
 class StateStack;
+class Player;
 
 class State
 {

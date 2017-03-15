@@ -3,22 +3,32 @@ FLAG=-lsfml-graphics \
 	-lsfml-system 
 
 CLASSES=aircraft.o \
+		animation.o \
 		application.o \
+		bloomEffect.o \
 		button.o \
 		$(HEADERS)category.hpp \
 		command.o \
 		commandQueue.o \
 		component.o \
 		container.o \
+		dataTables.o \
+		emitterNode.o \
 		entity.o \
+		gameOverState.o \
 		gameState.o \
 		label.o \
 		loadingState.o \
 		main.o \
 		menuState.o \
 		parallelTask.o \
+		$(HEADERS)particle.hpp \
+		particleNode.o \
 		pauseState.o \
+		pickup.o \
 		player.o \
+		postEffect.o \
+		projectile.o \
 		$(HEADERS)resourceHolder.hpp \
 		sceneNode.o \
 		settingState.o \
@@ -26,13 +36,14 @@ CLASSES=aircraft.o \
 		state.o \
 		$(HEADERS)stateIdentifiers.hpp \
 		stateStack.o \
+		textNode.o \
 		titleState.o \
 		utility.o \
 		world.o
 
 LDFLAGS=-g
 
-RDFLAGS=-std=c++11 -Wall -Werror
+RDFLAGS=-std=c++11
 
 SOURCES = Sources/
 
@@ -49,8 +60,14 @@ main.o : $(SOURCES)main.cpp
 aircraft.o : $(SOURCES)aircraft.cpp
 	g++ $(LDFLAGS) -c $(SOURCES)aircraft.cpp $(RDFLAGS)
 
+animation.o : $(SOURCES)animation.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)animation.cpp $(RDFLAGS)
+
 application.o : $(SOURCES)application.cpp
 	g++ $(LDFLAGS) -c $(SOURCES)application.cpp $(RDFLAGS)
+
+bloomEffect.o : $(SOURCES)bloomEffect.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)bloomEffect.cpp $(RDFLAGS)
 
 button.o : $(SOURCES)button.cpp
 	g++ $(LDFLAGS) -c $(SOURCES)button.cpp $(RDFLAGS)
@@ -67,8 +84,17 @@ component.o : $(SOURCES)component.cpp
 container.o : $(SOURCES)container.cpp
 	g++ $(LDFLAGS) -c $(SOURCES)container.cpp $(RDFLAGS)
 
+dataTables.o : $(SOURCES)dataTables.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)dataTables.cpp $(RDFLAGS)
+
+emitterNode.o : $(SOURCES)emitterNode.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)emitterNode.cpp $(RDFLAGS)
+
 entity.o : $(SOURCES)entity.cpp
 	g++ $(LDFLAGS) -c $(SOURCES)entity.cpp $(RDFLAGS)
+
+gameOverState.o : $(SOURCES)gameOverState.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)gameOverState.cpp $(RDFLAGS)
 
 gameState.o : $(SOURCES)gameState.cpp
 	g++ $(LDFLAGS) -c $(SOURCES)gameState.cpp $(RDFLAGS)
@@ -85,11 +111,23 @@ menuState.o : $(SOURCES)menuState.cpp
 parallelTask.o : $(SOURCES)parallelTask.cpp
 	g++ $(LDFLAGS) -c $(SOURCES)parallelTask.cpp $(RDFLAGS)
 
+particleNode.o : $(SOURCES)particleNode.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)particleNode.cpp $(RDFLAGS)
+
 pauseState.o : $(SOURCES)pauseState.cpp
 	g++ $(LDFLAGS) -c $(SOURCES)pauseState.cpp $(RDFLAGS)
 
+pickup.o : $(SOURCES)pickup.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)pickup.cpp $(RDFLAGS)
+
 player.o : $(SOURCES)player.cpp
 	g++ $(LDFLAGS) -c $(SOURCES)player.cpp $(RDFLAGS)
+
+postEffect.o : $(SOURCES)postEffect.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)postEffect.cpp $(RDFLAGS)
+
+projectile.o : $(SOURCES)projectile.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)projectile.cpp $(RDFLAGS)
 
 sceneNode.o : $(SOURCES)sceneNode.cpp
 	g++ $(LDFLAGS) -c $(SOURCES)sceneNode.cpp $(RDFLAGS)
@@ -105,6 +143,9 @@ state.o :  $(SOURCES)state.cpp
 
 stateStack.o :  $(SOURCES)stateStack.cpp
 	g++ $(LDFLAGS) -c $(SOURCES)stateStack.cpp $(RDFLAGS)
+
+textNode.o :  $(SOURCES)textNode.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)textNode.cpp $(RDFLAGS)
 
 titleState.o : $(SOURCES)titleState.cpp
 	g++ $(LDFLAGS) -c $(SOURCES)titleState.cpp $(RDFLAGS)

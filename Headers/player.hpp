@@ -1,14 +1,14 @@
-#ifndef BOOK_PLAYER_HPP
-#define BOOK_PLAYER_HPP
+#ifndef PLAYER_HPP
+#define PLAYER_HPP
 
-#include "../Headers/category.hpp"
 #include "../Headers/command.hpp"
-#include "../Headers/commandQueue.hpp"
-#include "../Headers/aircraft.hpp"
 
 #include <SFML/Window/Event.hpp>
 
 #include <map>
+
+
+class CommandQueue;
 
 class Player
 {
@@ -19,7 +19,16 @@ class Player
 			MoveRight,
 			MoveUp,
 			MoveDown,
+			Fire,
+			LaunchMissile,
 			ActionCount
+		};
+
+		enum MissionStatus
+		{
+			MissionRunning,
+			MissionSuccess,
+			MissionFailure
 		};
 
 
@@ -32,6 +41,8 @@ class Player
 		void					assignKey(Action action, sf::Keyboard::Key key);
 		sf::Keyboard::Key		getAssignedKey(Action action) const;
 
+		void 					setMissionStatus(MissionStatus status);
+		MissionStatus 			getMissionStatus() const;
 
 	private:
 		void					initializeActions();
@@ -41,6 +52,7 @@ class Player
 	private:
 		std::map<sf::Keyboard::Key, Action>		mKeyBinding;
 		std::map<Action, Command>				mActionBinding;
+		MissionStatus 							mCurrentMissionStatus;
 };
 
-#endif // BOOK_PLAYER_HPP
+#endif // PLAYER_HPP

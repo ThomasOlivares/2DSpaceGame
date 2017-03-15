@@ -1,29 +1,33 @@
-#ifndef TEXTURE_HOLDER_H
-#define TEXTURE_HOLDER_H
+#ifndef RESOURCEHOLDER_HPP
+#define RESOURCEHOLDER_HPP
 
-#include "../Headers/resourceIdentifiers.hpp"
-
-#include <SFML/Graphics.hpp>
 #include <map>
-#include <iostream>
+#include <string>
 #include <memory>
-#include <utility>
-#include <assert.h>
+#include <stdexcept>
+#include <cassert>
+
 
 template <typename Resource, typename Identifier>
-class ResourceHolder{
+class ResourceHolder
+{
 	public:
-		ResourceHolder();
-		void load(Identifier id, const std::string& filename);
+		void						load(Identifier id, const std::string& filename);
+
 		template <typename Parameter>
-		void load(Identifier id, const std::string& filename, 
-			const Parameter& secondParam);
-		Resource& get(Identifier id) const;
+		void						load(Identifier id, const std::string& filename, const Parameter& secondParam);
+
+		Resource&					get(Identifier id);
+		const Resource&				get(Identifier id) const;
+
 
 	private:
-		std::map<Identifier, std::unique_ptr<Resource>> mResourceMap;
+		void						insertResource(Identifier id, std::unique_ptr<Resource> resource);
+
+
+	private:
+		std::map<Identifier, std::unique_ptr<Resource>>	mResourceMap;
 };
 
 #include "../Sources/resourceHolder.tpp"
-
-#endif //TEXTURE_HOLDER_H
+#endif // RESOURCEHOLDER_HPP

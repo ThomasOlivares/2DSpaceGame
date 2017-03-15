@@ -1,5 +1,5 @@
-#ifndef BOOK_BUTTON_HPP
-#define BOOK_BUTTON_HPP
+#ifndef BUTTON_HPP
+#define BUTTON_HPP
 
 #include "../Headers/component.hpp"
 #include "../Headers/resourceIdentifiers.hpp"
@@ -20,41 +20,47 @@ namespace GUI
 class Button : public Component
 {
     public:
-        typedef std::shared_ptr<Button>		Ptr;
-        typedef std::function<void()>		Callback;
+        typedef std::shared_ptr<Button>     Ptr;
+        typedef std::function<void()>       Callback;
+
+        enum Type
+        {
+            Normal,
+            Selected,
+            Pressed,
+            ButtonCount
+        };
 
 
-	public:
-								Button(const FontHolder& fonts, const TextureHolder& textures);
+    public:
+                                Button(const FontHolder& fonts, const TextureHolder& textures);
 
-        void					setCallback(Callback callback);
-        void					setText(const std::string& text);
-        void					setToggle(bool flag);
+        void                    setCallback(Callback callback);
+        void                    setText(const std::string& text);
+        void                    setToggle(bool flag);
 
-        virtual bool			isSelectable() const;
-        virtual void			select();
-        virtual void			deselect();
+        virtual bool            isSelectable() const;
+        virtual void            select();
+        virtual void            deselect();
 
-        virtual void			activate();
-        virtual void			deactivate();
+        virtual void            activate();
+        virtual void            deactivate();
 
-        virtual void			handleEvent(const sf::Event& event);
+        virtual void            handleEvent(const sf::Event& event);
 
 
     private:
-        virtual void			draw(sf::RenderTarget& target, sf::RenderStates states) const;
+        virtual void            draw(sf::RenderTarget& target, sf::RenderStates states) const;
+        void                    changeTexture(Type buttonType);
 
 
     private:
-        Callback				mCallback;
-        const sf::Texture&		mNormalTexture;
-        const sf::Texture&		mSelectedTexture;
-        const sf::Texture&		mPressedTexture;
-        sf::Sprite				mSprite;
-        sf::Text				mText;
-        bool					mIsToggle;
+        Callback                mCallback;
+        sf::Sprite              mSprite;
+        sf::Text                mText;
+        bool                    mIsToggle;
 };
 
 }
 
-#endif // BOOK_BUTTON_HPP
+#endif // BUTTON_HPP

@@ -71,6 +71,7 @@ State::Ptr StateStack::createState(States::ID stateID)
 
 void StateStack::applyPendingChanges()
 {
+
 	for (auto itr = mPendingList.begin(); itr != mPendingList.end(); ++itr){
 		switch (itr->action)
 		{
