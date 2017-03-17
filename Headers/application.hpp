@@ -1,10 +1,12 @@
 #ifndef APPLICATION_HPP
 #define APPLICATION_HPP
 
-#include "../Headers/resourceIdentifiers.hpp"
 #include "../Headers/resourceHolder.hpp"
+#include "../Headers/resourceIdentifiers.hpp"
 #include "../Headers/player.hpp"
 #include "../Headers/stateStack.hpp"
+#include "../Headers/musicPlayer.hpp"
+#include "../Headers/soundPlayer.hpp"
 
 #include <SFML/System/Time.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
@@ -35,6 +37,8 @@ class Application
 	  	FontHolder				mFonts;
 		Player					mPlayer;
 
+		MusicPlayer				mMusic;
+		SoundPlayer				mSounds;
 		StateStack				mStateStack;
 
 		sf::Text				mStatisticsText;

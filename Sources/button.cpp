@@ -1,5 +1,7 @@
 #include "../Headers/button.hpp"
 #include "../Headers/utility.hpp"
+#include "../Headers/soundPlayer.hpp"
+#include "../Headers/resourceHolder.hpp"
 
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
@@ -9,11 +11,12 @@
 namespace GUI
 {
 
-Button::Button(const FontHolder& fonts, const TextureHolder& textures)
+Button::Button(State::Context context)
 : mCallback()
-, mSprite(textures.get(Textures::Buttons))
-, mText("", fonts.get(Fonts::Main), 16)
+, mSprite(context.textures->get(Textures::Buttons))
+, mText("", context.fonts->get(Fonts::Main), 16)
 , mIsToggle(false)
+, mSounds(*context.sounds)
 {
 	changeTexture(Normal);
 
@@ -70,6 +73,8 @@ void Button::activate()
     // If we are not a toggle then deactivate the button since we are just momentarily activated.
 	if (!mIsToggle)
 		deactivate();
+
+	mSounds.play(SoundEffect::Button);
 }
 
 void Button::deactivate()

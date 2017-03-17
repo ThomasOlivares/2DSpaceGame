@@ -12,17 +12,17 @@ SettingsState::SettingsState(StateStack& stack, Context context)
 	mBackgroundSprite.setTexture(context.textures->get(Textures::TitleScreen));
 	
 	// Build key binding buttons and labels
-	addButtonLabel(Player::MoveLeft,		50.f, "Move Left", context);
-	addButtonLabel(Player::MoveRight,		100.f, "Move Right", context);
-	addButtonLabel(Player::MoveUp,			150.f, "Move Up", context);
-	addButtonLabel(Player::MoveDown,		200.f, "Move Down", context);
-	addButtonLabel(Player::Fire,			250.f, "Fire", context);
-	addButtonLabel(Player::LaunchMissile,	300.f, "Missile", context);
+	addButtonLabel(Player::MoveLeft,		300.f, "Move Left", context);
+	addButtonLabel(Player::MoveRight,		350.f, "Move Right", context);
+	addButtonLabel(Player::MoveUp,			400.f, "Move Up", context);
+	addButtonLabel(Player::MoveDown,		450.f, "Move Down", context);
+	addButtonLabel(Player::Fire,			500.f, "Fire", context);
+	addButtonLabel(Player::LaunchMissile,	550.f, "Missile", context);
 
 	updateLabels();
 
-	auto backButton = std::make_shared<GUI::Button>(*context.fonts, *context.textures);
-	backButton->setPosition(80.f, 400.f);
+	auto backButton = std::make_shared<GUI::Button>(context);
+	backButton->setPosition(80.f, 620.f);
 	backButton->setText("Back");
 	backButton->setCallback(std::bind(&SettingsState::requestStackPop, this));
 
@@ -83,7 +83,7 @@ void SettingsState::updateLabels()
 
 void SettingsState::addButtonLabel(Player::Action action, float y, const std::string& text, Context context)
 {
-	mBindingButtons[action] = std::make_shared<GUI::Button>(*context.fonts, *context.textures);
+	mBindingButtons[action] = std::make_shared<GUI::Button>(context);
 	mBindingButtons[action]->setPosition(80.f, y);
 	mBindingButtons[action]->setText(text);
 	mBindingButtons[action]->setToggle(true);

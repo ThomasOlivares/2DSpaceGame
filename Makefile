@@ -1,6 +1,8 @@
 FLAG=-lsfml-graphics \
 	-lsfml-window \
-	-lsfml-system 
+	-lsfml-system \
+	-lsfml-audio \
+	-lsfml-network
 
 CLASSES=aircraft.o \
 		animation.o \
@@ -21,6 +23,7 @@ CLASSES=aircraft.o \
 		loadingState.o \
 		main.o \
 		menuState.o \
+		musicPlayer.o \
 		parallelTask.o \
 		$(HEADERS)particle.hpp \
 		particleNode.o \
@@ -32,6 +35,8 @@ CLASSES=aircraft.o \
 		$(HEADERS)resourceHolder.hpp \
 		sceneNode.o \
 		settingState.o \
+		soundNode.o \
+		soundPlayer.o \
 		spriteNode.o \
 		state.o \
 		$(HEADERS)stateIdentifiers.hpp \
@@ -108,6 +113,9 @@ loadingState.o : $(SOURCES)loadingState.cpp
 menuState.o : $(SOURCES)menuState.cpp
 	g++ $(LDFLAGS) -c $(SOURCES)menuState.cpp $(RDFLAGS)
 
+musicPlayer.o : $(SOURCES)musicPlayer.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)musicPlayer.cpp $(RDFLAGS)
+
 parallelTask.o : $(SOURCES)parallelTask.cpp
 	g++ $(LDFLAGS) -c $(SOURCES)parallelTask.cpp $(RDFLAGS)
 
@@ -134,6 +142,12 @@ sceneNode.o : $(SOURCES)sceneNode.cpp
 
 settingState.o : $(SOURCES)settingState.cpp
 	g++ $(LDFLAGS) -c $(SOURCES)settingState.cpp $(RDFLAGS)
+
+soundNode.o : $(SOURCES)soundNode.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)soundNode.cpp $(RDFLAGS)
+
+soundPlayer.o : $(SOURCES)soundPlayer.cpp
+	g++ $(LDFLAGS) -c $(SOURCES)soundPlayer.cpp $(RDFLAGS)
 
 spriteNode.o : $(SOURCES)spriteNode.cpp
 	g++ $(LDFLAGS) -c $(SOURCES)spriteNode.cpp $(RDFLAGS)

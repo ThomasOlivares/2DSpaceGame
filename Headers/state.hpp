@@ -1,14 +1,16 @@
-#ifndef STATE
-#define STATE
+#ifndef STATE_HPP
+#define STATE_HPP
 
 #include "../Headers/stateIdentifiers.hpp"
-#include "../Headers/resourceHolder.hpp"
 #include "../Headers/resourceIdentifiers.hpp"
+#include "../Headers/resourceHolder.hpp"
 #include "../Headers/utility.hpp"
 
 #include <SFML/System/Time.hpp>
 #include <SFML/Window/Event.hpp>
+
 #include <memory>
+
 
 namespace sf
 {
@@ -17,6 +19,8 @@ namespace sf
 
 class StateStack;
 class Player;
+class MusicPlayer;
+class SoundPlayer;
 
 class State
 {
@@ -25,13 +29,15 @@ class State
 
 		struct Context
 		{
-			Context(sf::RenderWindow& window, TextureHolder& textures, 
-				FontHolder& fonts, Player& player);
+								Context(sf::RenderWindow& window, TextureHolder& textures, FontHolder& fonts, Player& player,
+									MusicPlayer& music, SoundPlayer& sounds);
 
 			sf::RenderWindow*	window;
 			TextureHolder*		textures;
 			FontHolder*			fonts;
 			Player*				player;
+			MusicPlayer*		music;
+			SoundPlayer*		sounds;
 		};
 
 
@@ -57,4 +63,4 @@ class State
 		Context				mContext;
 };
 
-#endif //STATE
+#endif // STATE_HPP

@@ -1,5 +1,5 @@
-#ifndef BOOK_AIRCRAFT_HPP
-#define BOOK_AIRCRAFT_HPP
+#ifndef AIRCRAFT_HPP
+#define AIRCRAFT_HPP
 
 #include "../Headers/entity.hpp"
 #include "../Headers/command.hpp"
@@ -39,6 +39,7 @@ class Aircraft : public Entity
 
 		void 					fire();
 		void					launchMissile();
+		void					playLocalSound(CommandQueue& commands, SoundEffect::ID effect);
 
 
 	private:
@@ -66,6 +67,7 @@ class Aircraft : public Entity
 		bool 					mIsFiring;
 		bool					mIsLaunchingMissile;
 		bool 					mShowExplosion;
+		bool					mPlayedExplosionSound;
 		bool					mSpawnedPickup;
 
 		int						mFireRateLevel;
@@ -79,4 +81,4 @@ class Aircraft : public Entity
 		TextNode*				mMissileDisplay;
 };
 
-#endif // BOOK_AIRCRAFT_HPP
+#endif // AIRCRAFT_HPP
